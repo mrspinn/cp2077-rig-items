@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rigitems"
+dynamic = ["version"]
+description = "Turn Unique V framework body rigs into Equipment-EX items you can swap live in Cyberpunk 2077."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["Pillow>=9.1"]
+
+[project.scripts]
+rigitems = "rigitems.cli:main"
+
+[tool.setuptools]
+packages = ["rigitems"]
+
+[tool.setuptools.dynamic]
+version = { attr = "rigitems.__version__" }
+
+[tool.setuptools.package-data]
+rigitems = ["data/*.json", "data/SOURCE.md", "data/icon.png"]

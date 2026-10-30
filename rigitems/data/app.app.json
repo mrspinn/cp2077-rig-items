@@ -1,0 +1,486 @@
+{
+  "Header": {
+    "WolvenKitVersion": "9.1.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "2026-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": ""
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "appearanceAppearanceResource",
+      "alternateAppearanceMapping": [],
+      "alternateAppearanceSettingName": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+      },
+      "alternateAppearanceSuffixes": [],
+      "appearances": [
+        {
+          "HandleId": "0",
+          "Data": {
+            "$type": "appearanceAppearanceDefinition",
+            "censorFlags": 0,
+            "compiledData": {
+              "BufferId": "0",
+              "Flags": 0,
+              "Type": "WolvenKit.RED4.Archive.Buffer.RedPackage, WolvenKit.RED4, Version=9.1.0.0, Culture=neutral, PublicKeyToken=null",
+              "Data": {
+                "Version": 4,
+                "Sections": 6,
+                "CruidIndex": -1,
+                "CruidDict": {},
+                "Chunks": []
+              }
+            },
+            "components": [],
+            "cookedDataPathOverride": {
+              "DepotPath": {
+                "$type": "ResourcePath",
+                "$storage": "uint64",
+                "$value": "0"
+              },
+              "Flags": "Soft"
+            },
+            "forcedLodDistance": 0,
+            "hitRepresentationOverrides": [],
+            "inheritedVisualTags": {
+              "$type": "redTagList",
+              "tags": []
+            },
+            "looseDependencies": [],
+            "name": {
+              "$type": "CName",
+              "$storage": "string",
+              "$value": "@NAME@"
+            },
+            "parametersBuffer": {
+              "$type": "entEntityParametersBuffer",
+              "parameterBuffers": []
+            },
+            "parentAppearance": {
+              "$type": "CName",
+              "$storage": "string",
+              "$value": "None"
+            },
+            "partsMasks": [],
+            "partsOverrides": [
+              {
+                "$type": "appearanceAppearancePartOverrides",
+                "componentsOverrides": [
+                  {
+                    "$type": "appearancePartComponentOverrides",
+                    "acceptDismemberment": 1,
+                    "chunkMask": "9223372036854775807",
+                    "componentName": {
+                      "$type": "CName",
+                      "$storage": "string",
+                      "$value": "deformations"
+                    },
+                    "initialTransform": {
+                      "$type": "Transform",
+                      "orientation": {
+                        "$type": "Quaternion",
+                        "i": 0,
+                        "j": 0,
+                        "k": 0,
+                        "r": 1
+                      },
+                      "position": {
+                        "$type": "Vector4",
+                        "W": 0,
+                        "X": 0,
+                        "Y": 0,
+                        "Z": 0
+                      }
+                    },
+                    "meshAppearance": {
+                      "$type": "CName",
+                      "$storage": "string",
+                      "$value": "default"
+                    },
+                    "useCustomTransform": 0,
+                    "visualScale": {
+                      "$type": "Vector3",
+                      "X": 0,
+                      "Y": 0,
+                      "Z": 0
+                    }
+                  }
+                ],
+                "partResource": {
+                  "DepotPath": {
+                    "$type": "ResourcePath",
+                    "$storage": "uint64",
+                    "$value": "0"
+                  },
+                  "Flags": "Soft"
+                }
+              }
+            ],
+            "partsValues": [
+              {
+                "$type": "appearanceAppearancePart",
+                "resource": {
+                  "DepotPath": {
+                    "$type": "ResourcePath",
+                    "$storage": "string",
+                    "$value": "@MESH@"
+                  },
+                  "Flags": "Soft"
+                }
+              }
+            ],
+            "proxyMesh": {
+              "DepotPath": {
+                "$type": "ResourcePath",
+                "$storage": "uint64",
+                "$value": "0"
+              },
+              "Flags": "Soft"
+            },
+            "proxyMeshAppearance": {
+              "$type": "CName",
+              "$storage": "string",
+              "$value": "None"
+            },
+            "resolvedDependencies": [],
+            "visualTags": {
+              "$type": "redTagList",
+              "tags": []
+            }
+          }
+        }
+      ],
+      "baseEntity": {
+        "DepotPath": {
+          "$type": "ResourcePath",
+          "$storage": "uint64",
+          "$value": "0"
+        },
+        "Flags": "Soft"
+      },
+      "baseEntityType": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "ManAverage"
+      },
+      "baseType": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+      },
+      "censorshipMapping": [],
+      "commonCookData": {
+        "DepotPath": {
+          "$type": "ResourcePath",
+          "$storage": "uint64",
+          "$value": "0"
+        },
+        "Flags": "Soft"
+      },
+      "cookingPlatform": "PLATFORM_PC",
+      "DismEffects": [],
+      "DismWoundConfig": {
+        "$type": "entdismembermentWoundsConfigSet",
+        "Configs": [
+          {
+            "HandleId": "1",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "_q001__start_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "2",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "_q001__start_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "3",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "art_01_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "4",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "art_01_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "5",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "art_02_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "6",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "art_02_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "7",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "art_03_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "8",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "art_03_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "9",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_01_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "10",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_01_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "11",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_02_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "12",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_02_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "13",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_03_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "14",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_03_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "15",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_04_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "16",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "basic_04_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "17",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "default"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "18",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "old_01_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "19",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "old_01_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "20",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "old_02_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "21",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "old_02_w"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "22",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "old_03_m"
+              },
+              "Wounds": []
+            }
+          },
+          {
+            "HandleId": "23",
+            "Data": {
+              "$type": "entdismembermentWoundConfigContainer",
+              "AppearanceName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "old_03_w"
+              },
+              "Wounds": []
+            }
+          }
+        ]
+      },
+      "forceCompileProxy": 0,
+      "generatePlayerBlockingCollisionForProxy": 0,
+      "partType": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+      },
+      "preset": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "None"
+      },
+      "proxyPolyCount": 1400,
+      "Wounds": []
+    },
+    "EmbeddedFiles": []
+  }
+}

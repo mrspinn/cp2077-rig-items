@@ -1,0 +1,64 @@
+# Builds the standalone apps. Every push: test + build artifacts. A "v*" tag: also publish a GitHub release.
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            asset: RigItems-windows.zip
+          - os: ubuntu-22.04          # oldest supported glibc, so the binary runs on more distros
+            asset: RigItems-linux.tar.gz
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install pillow pyinstaller
+      - name: Test
+        run: python -m unittest -v
+      - name: Build
+        run: pyinstaller --noconfirm packaging/rigitems.spec
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: Compress-Archive -Path dist/RigItems.exe, README.md, LICENSE -DestinationPath ${{ matrix.asset }}
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          chmod +x dist/RigItems
+          tar -czf ${{ matrix.asset }} -C dist RigItems -C .. README.md LICENSE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.asset }}
+          path: ${{ matrix.asset }}
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: app
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            RigItems-windows.zip
+            RigItems-linux.tar.gz

@@ -1,0 +1,31 @@
+{
+  "Header": {
+    "WolvenKitVersion": "9.1.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "2026-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": ""
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "C2dArray",
+      "compiledData": [],
+      "compiledHeaders": [
+        "name",
+        "path",
+        "preload"
+      ],
+      "cookingPlatform": "PLATFORM_PC",
+      "data": [],
+      "headers": [
+        "name",
+        "path",
+        "preload"
+      ]
+    },
+    "EmbeddedFiles": []
+  }
+}

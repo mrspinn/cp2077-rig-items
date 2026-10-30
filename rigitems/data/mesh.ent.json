@@ -1,0 +1,297 @@
+{
+  "Header": {
+    "WolvenKitVersion": "9.1.0",
+    "WKitJsonVersion": "0.0.9",
+    "GameVersion": 2310,
+    "ExportedDateTime": "2026-01-01T00:00:00Z",
+    "DataType": "CR2W",
+    "ArchiveFileName": ""
+  },
+  "Data": {
+    "Version": 195,
+    "BuildVersion": 0,
+    "RootChunk": {
+      "$type": "entEntityTemplate",
+      "appearances": [],
+      "backendDataOverrides": [],
+      "bindingOverrides": [],
+      "compiledData": {
+        "BufferId": "0",
+        "Flags": 7471104,
+        "Type": "WolvenKit.RED4.Archive.Buffer.RedPackage, WolvenKit.RED4, Version=9.1.0.0, Culture=neutral, PublicKeyToken=null",
+        "Data": {
+          "Version": 4,
+          "Sections": 7,
+          "CruidIndex": 0,
+          "CruidDict": {
+            "0": "0",
+            "1": "2034565680883912704",
+            "2": "1108512022899240960"
+          },
+          "Chunks": [
+            {
+              "$type": "entEntity",
+              "customCameraTarget": "ECCTV_All",
+              "renderSceneLayerMask": "Default"
+            },
+            {
+              "$type": "entExternalComponent",
+              "externalComponentName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "root"
+              },
+              "id": "2034565680883912704",
+              "isReplicable": 0,
+              "name": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "Component"
+              }
+            },
+            {
+              "$type": "entAnimatedComponent",
+              "animations": {
+                "$type": "animAnimSetup",
+                "cinematics": [],
+                "gameplay": [],
+                "hash": "1099511628211"
+              },
+              "animParameters": [],
+              "animTags": {
+                "$type": "redTagList",
+                "tags": []
+              },
+              "audioAltName": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "None"
+              },
+              "calculateAccelerationWs": 0,
+              "clientForcedLod": -1,
+              "clientForcedVisibility": 0,
+              "controlBinding": {
+                "HandleId": "0",
+                "Data": {
+                  "$type": "entAnimationControlBinding",
+                  "bindName": {
+                    "$type": "CName",
+                    "$storage": "string",
+                    "$value": "root"
+                  },
+                  "enabled": 1,
+                  "enableMask": {
+                    "$type": "entTagMask",
+                    "excludedTags": {
+                      "$type": "redTagList",
+                      "tags": [
+                        {
+                          "$type": "CName",
+                          "$storage": "string",
+                          "$value": "NoBinding"
+                        }
+                      ]
+                    },
+                    "hardTags": {
+                      "$type": "redTagList",
+                      "tags": []
+                    },
+                    "softTags": {
+                      "$type": "redTagList",
+                      "tags": []
+                    }
+                  }
+                }
+              },
+              "facialSetup": {
+                "DepotPath": {
+                  "$type": "ResourcePath",
+                  "$storage": "uint64",
+                  "$value": "0"
+                },
+                "Flags": "Soft"
+              },
+              "graph": {
+                "DepotPath": {
+                  "$type": "ResourcePath",
+                  "$storage": "string",
+                  "$value": "@GRAPH@"
+                },
+                "Flags": "Obligatory"
+              },
+              "id": "1108512022899240960",
+              "isReplicable": 0,
+              "localTransform": {
+                "$type": "WorldTransform",
+                "Orientation": {
+                  "$type": "Quaternion",
+                  "i": 0,
+                  "j": 0,
+                  "k": 0,
+                  "r": 1
+                },
+                "Position": {
+                  "$type": "WorldPosition",
+                  "x": {
+                    "$type": "FixedPoint",
+                    "Bits": 0
+                  },
+                  "y": {
+                    "$type": "FixedPoint",
+                    "Bits": 0
+                  },
+                  "z": {
+                    "$type": "FixedPoint",
+                    "Bits": 0
+                  }
+                }
+              },
+              "name": {
+                "$type": "CName",
+                "$storage": "string",
+                "$value": "deformations"
+              },
+              "parentTransform": null,
+              "rig": {
+                "DepotPath": {
+                  "$type": "ResourcePath",
+                  "$storage": "string",
+                  "$value": "@RIG@"
+                },
+                "Flags": "Obligatory"
+              },
+              "serverForcedLod": -1,
+              "serverForcedVisibility": 0,
+              "useLongRangeVisibility": 0
+            }
+          ]
+        }
+      },
+      "compiledEntityLODFlags": 0,
+      "componentResolveSettings": [],
+      "components": [
+        {
+          "$type": "entExternalComponent",
+          "externalComponentName": {
+            "$type": "CName",
+            "$storage": "string",
+            "$value": "root"
+          },
+          "id": "2034565680883912704",
+          "isReplicable": 0,
+          "name": {
+            "$type": "CName",
+            "$storage": "string",
+            "$value": "Component"
+          }
+        },
+        {
+          "$type": "entAnimatedComponent",
+          "animations": {
+            "$type": "animAnimSetup",
+            "cinematics": [],
+            "gameplay": [],
+            "hash": "1099511628211"
+          },
+          "animParameters": [],
+          "animTags": {
+            "$type": "redTagList",
+            "tags": []
+          },
+          "audioAltName": {
+            "$type": "CName",
+            "$storage": "string",
+            "$value": "None"
+          },
+          "calculateAccelerationWs": 0,
+          "clientForcedLod": -1,
+          "clientForcedVisibility": 0,
+          "controlBinding": {
+            "HandleRefId": "0"
+          },
+          "facialSetup": {
+            "DepotPath": {
+              "$type": "ResourcePath",
+              "$storage": "uint64",
+              "$value": "0"
+            },
+            "Flags": "Soft"
+          },
+          "graph": {
+            "DepotPath": {
+              "$type": "ResourcePath",
+              "$storage": "string",
+              "$value": "@GRAPH@"
+            },
+            "Flags": "Obligatory"
+          },
+          "id": "1108512022899240960",
+          "isReplicable": 0,
+          "localTransform": {
+            "$type": "WorldTransform",
+            "Orientation": {
+              "$type": "Quaternion",
+              "i": 0,
+              "j": 0,
+              "k": 0,
+              "r": 1
+            },
+            "Position": {
+              "$type": "WorldPosition",
+              "x": {
+                "$type": "FixedPoint",
+                "Bits": 0
+              },
+              "y": {
+                "$type": "FixedPoint",
+                "Bits": 0
+              },
+              "z": {
+                "$type": "FixedPoint",
+                "Bits": 0
+              }
+            }
+          },
+          "name": {
+            "$type": "CName",
+            "$storage": "string",
+            "$value": "deformations"
+          },
+          "parentTransform": null,
+          "rig": {
+            "DepotPath": {
+              "$type": "ResourcePath",
+              "$storage": "string",
+              "$value": "@RIG@"
+            },
+            "Flags": "Obligatory"
+          },
+          "serverForcedLod": -1,
+          "serverForcedVisibility": 0,
+          "useLongRangeVisibility": 0
+        }
+      ],
+      "cookingPlatform": "PLATFORM_PC",
+      "defaultAppearance": {
+        "$type": "CName",
+        "$storage": "string",
+        "$value": "default"
+      },
+      "entity": {
+        "HandleId": "1",
+        "Data": {
+          "$type": "entEntity",
+          "customCameraTarget": "ECCTV_All",
+          "renderSceneLayerMask": "Default"
+        }
+      },
+      "includeInstanceBuffer": null,
+      "includes": [],
+      "inplaceResources": [],
+      "localData": null,
+      "resolvedDependencies": [],
+      "visualTagsSchema": null
+    },
+    "EmbeddedFiles": []
+  }
+}

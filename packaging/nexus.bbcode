@@ -1,0 +1,73 @@
+[size=5][b]Rig Items[/b][/size]
+[b]Swap body rigs in-game, no restart.[/b]
+
+Every Unique V framework rig replaces the same file, so you can only install one, and trying another means a trip to your mod manager and a relaunch.
+
+Rig Items turns the rigs you've downloaded into [b]Equipment-EX items[/b]. Install as many as you like, then equip one in the [b]Left Toes[/b] slot to wear that body. Unequip it to go back to your base body.
+
+[line]
+
+[size=4][b]Requirements[/b][/size]
+[list]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/4198]ArchiveXL[/url]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/4197]TweakXL[/url]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/6945]Equipment-EX[/url]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/107]Cyber Engine Tweaks[/url] (to add the items to your inventory)
+[/list]
+You do [b]not[/b] need the Unique V framework. Don't install the rig mods themselves either: each item carries its own copy of its rig.
+
+Tested on game version 3.0.
+
+[line]
+
+[size=4][b]How to use[/b][/size]
+[list=1]
+[*]Download and unzip [b]RigItems-windows.zip[/b], then run [b]RigItems.exe[/b].
+[*]The first time, click [b]Set up WolvenKit[/b]. The app downloads the official WolvenKit command-line tool (and .NET if needed). Nothing is installed system-wide. Already have WolvenKit? Click [b]Locate...[/b] instead.
+[*]Click [b]Add files...[/b] and pick the rig mods you downloaded (.zip, .7z, .rar or .archive). You can also drag them onto RigItems.exe. Double-click a rig to rename it.
+[*]Click [b]Build mod[/b], then install the resulting [b]RigItems.zip[/b] with your mod manager.
+[*]In game, click [b]Copy commands[/b] in the app, paste them into the CET console, then equip a rig under [b]Left Toes[/b] in Equipment-EX.
+[/list]
+[b]Adding rigs later:[/b] add all your rigs, old and new, build again, and replace the installed mod. Items you already own carry over.
+
+Each mod you add must contain exactly one framework rig. If a download bundles several variants, add the .archive you want directly.
+
+[line]
+
+[size=4][b]Limitations[/b][/size]
+[list]
+[*][b]Female V only[/b] for now.
+[*][b]Third person only.[/b] First person keeps your base body.
+[*][b]One rig at a time.[/b] Equip only one rig item.
+[*]Don't combine with other mods that put rigs in the [b]Left Toes[/b] slot.
+[*]A game patch can break the items. If it does, run [b]RigItems templates[/b] from a terminal and build again.
+[/list]
+
+[line]
+
+[size=4][b]Permissions: please read[/b][/size]
+This is a converter. The mod it builds contains the rig authors' work, and many of them don't allow redistribution or derivatives. [b]Keep converted mods for your own use[/b] unless the rig's author says otherwise.
+
+[b]Rig authors:[/b] you're welcome to use this to ship your own rigs as items.
+
+Rig Items ships no other mod authors' files. Its item templates are generated from vanilla game files.
+
+[line]
+
+[size=4][b]FAQ[/b][/size]
+[b]My antivirus or Windows SmartScreen flagged the app.[/b]
+This happens often with apps packaged by PyInstaller. The source is public and the release is built automatically on GitHub, so you can check it, or run it from Python instead: [url=GITHUB_URL]GITHUB_URL[/url]
+
+[b]Linux?[/b]
+A Linux build and the command-line version are on [url=GITHUB_URL]GitHub[/url].
+
+[line]
+
+[size=4][b]Credits[/b][/size]
+[list]
+[*]Johnson's [url=https://www.nexusmods.com/cyberpunk2077/mods/3725]Unique V framework[/url] and nutboy's [url=https://www.nexusmods.com/cyberpunk2077/mods/29927]ArchiveXL version[/url], for the player-only rig path this builds on
+[*][url=https://github.com/WolvenKit/WolvenKit]WolvenKit[/url], psiberx's ArchiveXL and TweakXL, and Equipment-EX
+[*]Every rig author whose work you convert
+[/list]
+
+Source code (MIT): [url=GITHUB_URL]GitHub[/url]

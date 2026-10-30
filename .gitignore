@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build output (setuptools, PyInstaller)
+build/
+dist/
+
+# Tool output and local inputs
+RigItems*.zip
+rigs.json
+*.archive
+*.7z
+*.rar
+
+# Editors / OS
+.vscode/
+.idea/
+.claude/settings.local.json
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini

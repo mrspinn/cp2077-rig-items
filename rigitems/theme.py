@@ -24,6 +24,7 @@ SANS = ("Bahnschrift", "Rajdhani", "Roboto Condensed", "DejaVu Sans Condensed", 
 MONO = ("Cascadia Mono", "Consolas", "JetBrains Mono", "DejaVu Sans Mono", "Liberation Mono", "Courier New")
 
 SUPERSAMPLE = 4
+TILE = 64
 
 
 def _pick(root, choices):
@@ -38,7 +39,8 @@ def _chamfer(root, cut, line, fill, outline, notch=None):
     along the top-left cut, the little accent the game puts on its panels.
     """
     edge = cut + line + 2              # the slice border: corners stay sharp however the widget stretches
-    size = 2 * edge + 2
+    # ttk fills the middle by tiling it, one image draw per tile (each slow on Windows): keep the tiles big.
+    size = 2 * edge + TILE
     k = SUPERSAMPLE
     img = Image.new("RGBA", (size * k, size * k), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
@@ -63,8 +65,9 @@ def _chamfer(root, cut, line, fill, outline, notch=None):
 def _element(style, root, name, states, cut, line=1):
     """Register an image element from {state spec: (fill, outline[, notch])}; the first entry is the default."""
     (_, default), *rest = [(spec, _chamfer(root, cut, line, *colors)) for spec, colors in states]
+    minimum = 2 * default[1] + 2       # requested size, as if the image had no big middle tile
     style.element_create(name, "image", default[0], *[(spec, img) for spec, (img, _) in rest],
-                         border=default[1], padding=line + 1, sticky="nsew")
+                         border=default[1], padding=line + 1, sticky="nsew", width=minimum, height=minimum)
     return default[1]
 
 

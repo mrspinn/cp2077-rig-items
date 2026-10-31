@@ -12,7 +12,7 @@ EXE_NAMES = ("WolvenKit.CLI.exe", "WolvenKit.CLI") if os.name == "nt" else ("Wol
 TESTED_VERSION = "9.1.0"
 
 # Keep the GUI app from flashing a console window for every WolvenKit call.
-NO_WINDOW = {"creationflags": subprocess.CREATENO_WINDOW} if os.name == "nt" else {}
+NO_WINDOW = {"creationflags": subprocess.CREATE_NO_WINDOW} if os.name == "nt" else {}
 
 # WolvenKit often exits 0 after logging an error, so the log is checked too.
 _FAILED = re.compile(r"\b(Error|Critical)\s*\]|Unhandled exception")

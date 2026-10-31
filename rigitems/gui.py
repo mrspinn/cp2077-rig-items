@@ -176,6 +176,8 @@ class App:
                     self.wk_status.configure(text=rest[0])
                     self.setup_btn.pack(side="right")
                     self.locate_btn.pack(side="right", padx=6)
+                    if self.pending:
+                        self._append(f"{len(self.pending)} file(s) will be scanned once WolvenKit is set up.")
                 elif kind == "rigs":
                     self.rigs.extend(r for r in rest[0] if r.archive not in {x.archive for x in self.rigs})
                     self.apply_names()

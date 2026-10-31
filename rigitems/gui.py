@@ -58,6 +58,7 @@ class App:
         self.session = Path(tempfile.mkdtemp(prefix="rigitems-gui-"))
         self.scans = 0
         self.pending = list(paths)
+        self.picking = False
 
         root.title(f"Rig Items {__version__}")
         root.iconphoto(True, tk.PhotoImage(master=root, file=Path(__file__).resolve().parent / "data/icon.png"))
@@ -183,9 +184,14 @@ class App:
                 elif kind == "error":
                     self._append(f"Error: {rest[0]}", "error")
                     theme.error(self.root, "Error", rest[0])
+                elif kind == "pick_game":   # opened once its worker is idle, so the next work() stays busy
+                    self.picking = True
                 elif kind == "idle":
                     self.set_busy(False)
-                    if self.pending and self.wk:
+                    if self.picking:
+                        self.picking = False
+                        self.pick_game()
+                    elif self.pending and self.wk:
                         paths, self.pending = self.pending, []
                         self.scan(paths)
         except queue.Empty:
@@ -268,23 +274,30 @@ class App:
 
     def scan_game(self):
         """For Vortex users, whose rig mods may only exist installed in the game, not as downloads."""
-        try:
-            mods = templates.find_game() / "archive/pc/mod"
-        except FileNotFoundError:
-            picked = filedialog.askdirectory(title="Find your Cyberpunk 2077 folder", parent=self.root)
-            if not picked:
+        def find():   # find_game stats every Steam library, maybe on a sleeping HDD: not on the Tk thread
+            try:
+                mods = templates.find_game() / "archive/pc/mod"
+            except FileNotFoundError:
+                self.q.put(("pick_game",))
                 return
-            mods = Path(picked)
-            if (mods / "archive/pc/mod").is_dir():
-                mods = mods / "archive/pc/mod"
+            self.scan_mods(mods)
+        self.work(find)
 
-        def run():
-            self.log(f"Scanning installed mods in {mods}...")
-            found = inputs.scan_mod_folder(mods, self.log)
-            self.q.put(("rigs", found))
-            self.log(f"Found {len(found)} installed rig(s)." if found else
-                     "No Unique V framework rigs installed. Mods disabled in Vortex aren't in the game folder.")
-        self.work(run)
+    def pick_game(self):
+        picked = filedialog.askdirectory(title="Find your Cyberpunk 2077 folder", parent=self.root)
+        if not picked:
+            return
+        mods = Path(picked)
+        if (mods / "archive/pc/mod").is_dir():
+            mods = mods / "archive/pc/mod"
+        self.work(self.scan_mods, mods)
+
+    def scan_mods(self, mods):   # on a worker
+        self.log(f"Scanning installed mods in {mods}...")
+        found = inputs.scan_mod_folder(mods, self.log)
+        self.q.put(("rigs", found))
+        self.log(f"Found {len(found)} installed rig(s)." if found else
+                 "No Unique V framework rigs installed. Mods disabled in Vortex aren't in the game folder.")
 
     def scan(self, paths):
         def run():

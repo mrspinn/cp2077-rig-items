@@ -27,6 +27,8 @@ You do **not** need the Unique V framework itself. Don't install the converted r
 
    Already have WolvenKit? Click **Locate...** instead.
 3. Click **Add files...** and pick the rig mods you downloaded: mod `.zip`, `.7z` or `.rar` files, or loose `.archive` files. Use **Add folder...** for an unpacked mod. On Windows you can also drag the files onto `RigItems.exe`.
+
+   **Installed rigs with Vortex?** Click **Scan game mods** instead. It finds every framework rig in your game's `archive/pc/mod` folder, so you don't need the original downloads. Vortex only puts enabled mods there, so enable the rigs you want first. Once your Rig Items mod is installed, disable or uninstall the original rigs.
 4. Optionally double-click a rig to change its in-game name.
 5. Click **Build mod**. Install the resulting `RigItems.zip` with your mod manager like any other mod.
 6. In game, click **Copy commands** in the app and paste them into the CET console. Then open Equipment-EX and equip a rig under **Left Toes**.

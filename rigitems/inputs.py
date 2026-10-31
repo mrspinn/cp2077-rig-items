@@ -3,6 +3,7 @@ import json
 import os
 import re
 import shutil
+import struct
 import subprocess
 import zipfile
 from dataclasses import dataclass
@@ -101,6 +102,44 @@ def collect(paths, wk, work, log=print):
             errors.append(str(e))
     if errors:
         raise InputError("\n".join(errors))
+    return rigs
+
+
+def path_hash(depot_path):
+    """FNV-1a 64 of the lowercased depot path: how .archive indexes name their files."""
+    h = 0xCBF29CE484222325
+    for b in depot_path.lower().encode():
+        h = ((h ^ b) * 0x100000001B3) & 0xFFFFFFFFFFFFFFFF
+    return h
+
+
+def archive_hashes(path):
+    """Path hashes in an .archive's file index, read directly: far faster than a WolvenKit call per archive."""
+    with open(path, "rb") as f:
+        head = f.read(20)
+        if len(head) < 20 or head[:4] != b"RDAR":
+            raise InputError(f"{Path(path).name}: not a Cyberpunk .archive")
+        index_pos = struct.unpack_from("<Q", head, 8)[0]
+        f.seek(index_pos)
+        index = f.read(28)   # table offset, size, crc, file count, segment count, dependency count
+        if len(index) < 28:
+            raise InputError(f"{Path(path).name}: truncated .archive index")
+        count = struct.unpack_from("<I", index, 16)[0]
+        table = f.read(count * 56)   # 56-byte entries, path hash first
+    return {struct.unpack_from("<Q", table, i * 56)[0] for i in range(len(table) // 56)}
+
+
+def scan_mod_folder(folder, log=print):
+    """Every installed framework rig in a game's archive/pc/mod (where Vortex deploys mods), one rig per archive."""
+    rigs = []
+    for a in sorted(Path(folder).rglob("*.archive")):
+        try:
+            hashes = archive_hashes(a)
+        except (OSError, InputError) as e:
+            log(f"  skip {a.name}: {e}")
+            continue
+        if path_hash(FRAMEWORK_RIG) in hashes and path_hash(FRAMEWORK_GRAPH) in hashes:
+            rigs.append(Rig(a, a, path_hash(FPP_RIG) in hashes))
     return rigs
 
 

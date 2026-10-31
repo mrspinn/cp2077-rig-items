@@ -61,6 +61,34 @@ class Naming(unittest.TestCase):
             self.assertFalse((Path(d) / "escape.txt").exists())
 
 
+def fake_archive(path, depot_paths):
+    """Header + index + file table, the parts archive_hashes reads (no file data)."""
+    import struct
+    entries = b"".join(struct.pack("<Q", inputs.path_hash(p)) + bytes(48) for p in depot_paths)
+    index = struct.pack("<IIQIII", 8, 20 + len(entries), 0, len(depot_paths), 0, 0) + entries
+    path.write_bytes(b"RDAR" + struct.pack("<IQ", 12, 40) + bytes(24) + index)
+
+
+class ModFolder(unittest.TestCase):
+    def test_path_hash(self):   # value read from a real rig archive's index
+        self.assertEqual(inputs.path_hash(inputs.FRAMEWORK_RIG), 0xBA39449DF692AB6B)
+        self.assertEqual(inputs.path_hash(inputs.FRAMEWORK_RIG.upper()), 0xBA39449DF692AB6B)
+
+    def test_scan_mod_folder(self):
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            fake_archive(d / "Aphrodite_Rig_With_UVF.archive", [inputs.FRAMEWORK_RIG, inputs.FRAMEWORK_GRAPH])
+            fake_archive(d / "Both.archive", [inputs.FRAMEWORK_RIG, inputs.FRAMEWORK_GRAPH, inputs.FPP_RIG])
+            fake_archive(d / "RigOnly.archive", [inputs.FRAMEWORK_RIG])
+            fake_archive(d / "Clothes.archive", [r"base\some\mesh.mesh"])
+            (d / "Broken.archive").write_bytes(b"nope")
+            skipped = []
+            rigs = inputs.scan_mod_folder(d, skipped.append)
+        self.assertEqual([(r.archive.name, r.has_fpp) for r in rigs],
+                         [("Aphrodite_Rig_With_UVF.archive", False), ("Both.archive", True)])
+        self.assertEqual(len(skipped), 1)
+
+
 class Swap(unittest.TestCase):
     def test_swap_deep(self):
         depth = sys.getrecursionlimit() * 2

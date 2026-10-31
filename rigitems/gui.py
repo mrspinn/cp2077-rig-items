@@ -11,7 +11,7 @@ import tkinter as tk
 from pathlib import Path
 from tkinter import filedialog, ttk
 
-from . import __version__, build, inputs, theme, toolchain
+from . import __version__, build, inputs, templates, theme, toolchain
 from .cli import setup
 from .wolvenkit import RuntimeMissing, WolvenKit, WolvenKitError, locate
 
@@ -102,9 +102,10 @@ class App:
         btns.pack(side="left", fill="y", padx=8, pady=8)
         self.add_btn = ttk.Button(btns, text="Add files...", command=self.add_files)
         self.add_dir_btn = ttk.Button(btns, text="Add folder...", command=self.add_folder)
+        self.game_btn = ttk.Button(btns, text="Scan game mods", command=self.scan_game)
         self.rename_btn = ttk.Button(btns, text="Rename...", command=self.rename)
         self.remove_btn = ttk.Button(btns, text="Remove", command=self.remove)
-        for b in (self.add_btn, self.add_dir_btn, self.rename_btn, self.remove_btn):
+        for b in (self.add_btn, self.add_dir_btn, self.game_btn, self.rename_btn, self.remove_btn):
             b.pack(fill="x", pady=(0, 6))
 
         out = ttk.Frame(self.root)
@@ -210,7 +211,7 @@ class App:
     def refresh(self):
         idle = not self.busy
         ready = idle and self.wk is not None
-        for b in (self.add_btn, self.add_dir_btn):
+        for b in (self.add_btn, self.add_dir_btn, self.game_btn):
             b.state(["!disabled"] if ready else ["disabled"])
         for b in (self.rename_btn, self.remove_btn):
             b.state(["!disabled"] if idle and self.rigs else ["disabled"])
@@ -264,6 +265,26 @@ class App:
         path = filedialog.askdirectory(title="Add an unpacked rig mod folder", parent=self.root)
         if path:
             self.scan([path])
+
+    def scan_game(self):
+        """For Vortex users, whose rig mods may only exist installed in the game, not as downloads."""
+        try:
+            mods = templates.find_game() / "archive/pc/mod"
+        except FileNotFoundError:
+            picked = filedialog.askdirectory(title="Find your Cyberpunk 2077 folder", parent=self.root)
+            if not picked:
+                return
+            mods = Path(picked)
+            if (mods / "archive/pc/mod").is_dir():
+                mods = mods / "archive/pc/mod"
+
+        def run():
+            self.log(f"Scanning installed mods in {mods}...")
+            found = inputs.scan_mod_folder(mods, self.log)
+            self.q.put(("rigs", found))
+            self.log(f"Found {len(found)} installed rig(s)." if found else
+                     "No Unique V framework rigs installed. Mods disabled in Vortex aren't in the game folder.")
+        self.work(run)
 
     def scan(self, paths):
         def run():

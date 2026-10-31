@@ -90,10 +90,12 @@ def build_rigs(rigs, output, wk, template_dir=None, work=None, log=print):
 
 
 def _build(rigs, output, wk, t, work, log):
-    stage, raw, mod = work / "stage", work / "raw", work / "mod"
+    # Each WolvenKit command costs ~6 s of startup on Windows, so serialize and deserialize run once for all files.
+    stage, raw, mod, graphs = work / "stage", work / "raw", work / "mod", work / "graphs"
+    graphs.mkdir(parents=True)
     for r in rigs:
         log(f"  {r.key}: {r.title}  <- {r.archive.name}{'  (first-person rig ignored)' if r.has_fpp else ''}")
-        p, name = paths(r.key), item_name(r.key)
+        p = paths(r.key)
         src = work / "src" / r.key
         wk.extract(r.archive, src, r"^base\\characters\\base_entities\\woman_base\\deformations_rigs\\"
                                    r"female_plr_deformations\.(rig|animgraph)$")
@@ -101,8 +103,12 @@ def _build(rigs, output, wk, t, work, log):
         dst = raw / p["dir"].replace("\\", "/")
         dst.mkdir(parents=True, exist_ok=True)
         shutil.copy(rig_dir / "female_plr_deformations.rig", dst / f"{r.key}.rig")
-        wk.serialize(rig_dir / "female_plr_deformations.animgraph", src / "json")
-        graph = cr2w.load(src / "json/female_plr_deformations.animgraph.json")
+        shutil.copy(rig_dir / "female_plr_deformations.animgraph", graphs / f"{r.key}.animgraph")
+    wk.serialize(graphs, graphs / "json")
+
+    for r in rigs:
+        p, name = paths(r.key), item_name(r.key)
+        graph = cr2w.load(graphs / f"json/{r.key}.animgraph.json")
         cr2w.dump(stage_path(stage, p["graph"]), repoint_graph(graph, p["rig"]))
 
         swaps = {tpl.NAME: name, tpl.APP: p["app"], tpl.MESH: p["mesh"], tpl.RIG: p["rig"], tpl.GRAPH: p["graph"]}
@@ -127,8 +133,16 @@ def _build(rigs, output, wk, t, work, log):
               cr2w.inkatlas(f"{MOD}\\icons.xbm", f"{MOD}\\icons_1080.xbm", big.size, parts))
 
     log("Packing...")
+    staged = {}                        # deserialize flattens folders: put each file back by its (unique) name
     for j in sorted(stage.rglob("*.json")):
-        wk.deserialize(j, raw / j.relative_to(stage).parent)
+        if j.stem in staged:
+            raise BuildError(f"two staged files are both named {j.stem}")
+        staged[j.stem] = raw / j.relative_to(stage).with_suffix("")
+    flat = work / "flat"
+    wk.deserialize(stage, flat)
+    for name, dest in staged.items():
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        (flat / name).replace(dest)
     expected = {str(f.relative_to(stage).with_suffix("")).replace("/", "\\") for f in stage.rglob("*.json")}
     expected |= {str(f.relative_to(raw)).replace("/", "\\") for f in raw.rglob("*.rig")}
     archive_dir = mod / "archive/pc/mod"
